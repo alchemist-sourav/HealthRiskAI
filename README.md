@@ -421,10 +421,6 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 **Sourav**
 *Full Stack ML Engineer*
 
-- 🔗 GitHub: [@your-username](https://github.com/your-username)
-- 🌐 Portfolio: [your-portfolio.dev](https://your-portfolio.dev)
-- 💼 LinkedIn: [linkedin.com/in/your-profile](https://linkedin.com/in/your-profile)
-
 Built with ❤️ as a Final Year Capstone Project — combining modern web engineering with applied machine learning to solve real healthcare challenges.
 
 ---
