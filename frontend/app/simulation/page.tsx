@@ -242,6 +242,21 @@ export default function SimulationPage() {
                             <p className="text-2xl font-bold text-success">Low</p>
                         </div>
                     </GlassCard>
+
+                    <GlassCard className="flex flex-col gap-4 border-l-4 border-l-warning" hoverLift={false}>
+                        <div className="flex justify-between items-center">
+                            <h3 className="font-bold flex items-center gap-2">
+                                <Pill size={16} className="text-warning" /> Pharma Logistics
+                            </h3>
+                            <span className="text-xs bg-surface px-2 py-1 rounded text-text-secondary">
+                                Active
+                            </span>
+                        </div>
+                        <div>
+                            <p className="text-sm text-text-secondary">Pipeline Valuation</p>
+                            <p className="text-2xl font-bold text-warning">₹3.8B</p>
+                        </div>
+                    </GlassCard>
                 </div>
 
                 {/* Scenarios + Results */}

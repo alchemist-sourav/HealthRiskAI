@@ -9,7 +9,7 @@ import RiskBadge from "@/components/ui/RiskBadge";
 import LoadingSkeleton from "@/components/ui/LoadingSkeleton";
 import {
     Stethoscope, Activity, Heart, Droplets, ShieldAlert, Shield,
-    TrendingDown, Waves, GitBranch, Network, Dna, FileText,
+    Network, FileText,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -67,25 +67,30 @@ export default function PredictPage() {
         }
     }
 
-    const renderInput = (label: string, name: string, type: string = "number") => (
-        <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-medium text-text-secondary uppercase tracking-wider">{label}</label>
+    const renderInput = (label: string, name: string, type: string = "number", min?: number, max?: number, step?: string) => (
+        <div className="relative group mt-2">
             <input
-                type={type} name={name} value={form[name as keyof typeof form]} onChange={handleInputChange}
-                className="bg-surface border border-border text-white text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition"
+                type={type} name={name} id={name} value={form[name as keyof typeof form]} onChange={handleInputChange} placeholder=" " min={min} max={max} step={step}
+                className="block px-3 pb-2.5 pt-4 w-full text-sm text-white bg-surface rounded-xl border border-border appearance-none focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary peer transition-colors"
+                required
             />
+            <label htmlFor={name} className="absolute text-xs text-text-secondary duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-surface px-2 peer-focus:px-2 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 rounded cursor-text">
+                {label}
+            </label>
         </div>
     );
 
-    const renderSelect = (label: string, name: string, options: { value: string; label: string }[]) => (
-        <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-medium text-text-secondary uppercase tracking-wider">{label}</label>
+    const renderSelect = (label: string, name: string, options: { value: string | number; label: string }[]) => (
+        <div className="relative group mt-2">
             <select
-                name={name} value={form[name as keyof typeof form]} onChange={handleInputChange}
-                className="bg-surface border border-border text-white text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition appearance-none"
+                name={name} id={name} value={form[name as keyof typeof form]} onChange={handleInputChange}
+                className="block px-3 pb-2.5 pt-4 w-full text-sm text-white bg-surface rounded-xl border border-border appearance-none focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary peer transition-colors cursor-pointer"
             >
                 {options.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
             </select>
+            <label htmlFor={name} className="absolute text-xs text-text-secondary duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-surface px-2 peer-focus:px-2 peer-focus:text-primary start-1 rounded pointer-events-none">
+                {label}
+            </label>
         </div>
     );
 
@@ -172,77 +177,11 @@ export default function PredictPage() {
                             <h2 className="font-semibold text-lg">Advanced Cardiovascular</h2>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                            <div className="flex flex-col gap-1.5">
-                                <label className="text-xs font-medium text-text-secondary uppercase tracking-wider flex items-center gap-1">
-                                    <Activity size={12} className="text-warning" /> Exercise Angina
-                                </label>
-                                <select
-                                    name="exang"
-                                    value={form.exang}
-                                    onChange={handleInputChange}
-                                    className="bg-surface border border-border text-white text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition appearance-none"
-                                >
-                                    <option value={0}>No</option>
-                                    <option value={1}>Yes</option>
-                                </select>
-                            </div>
-                            <div className="flex flex-col gap-1.5">
-                                <label className="text-xs font-medium text-text-secondary uppercase tracking-wider flex items-center gap-1">
-                                    <TrendingDown size={12} className="text-danger" /> ST Depression
-                                </label>
-                                <input
-                                    type="number"
-                                    name="oldpeak"
-                                    value={form.oldpeak}
-                                    onChange={handleInputChange}
-                                    step="0.1"
-                                    min={0}
-                                    className="bg-surface border border-border text-white text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-1.5">
-                                <label className="text-xs font-medium text-text-secondary uppercase tracking-wider flex items-center gap-1">
-                                    <Waves size={12} className="text-secondary" /> Slope of ST (0–2)
-                                </label>
-                                <input
-                                    type="number"
-                                    name="slope"
-                                    value={form.slope}
-                                    onChange={handleInputChange}
-                                    min={0}
-                                    max={2}
-                                    className="bg-surface border border-border text-white text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-1.5">
-                                <label className="text-xs font-medium text-text-secondary uppercase tracking-wider flex items-center gap-1">
-                                    <GitBranch size={12} className="text-success" /> Number of Vessels (0–3)
-                                </label>
-                                <input
-                                    type="number"
-                                    name="ca"
-                                    value={form.ca}
-                                    onChange={handleInputChange}
-                                    min={0}
-                                    max={3}
-                                    className="bg-surface border border-border text-white text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-1.5">
-                                <label className="text-xs font-medium text-text-secondary uppercase tracking-wider flex items-center gap-1">
-                                    <Dna size={12} className="text-primary" /> Thalassemia
-                                </label>
-                                <select
-                                    name="thal"
-                                    value={form.thal}
-                                    onChange={handleInputChange}
-                                    className="bg-surface border border-border text-white text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition appearance-none"
-                                >
-                                    <option value={2}>Normal (2)</option>
-                                    <option value={1}>Fixed Defect (1)</option>
-                                    <option value={3}>Reversable Defect (3)</option>
-                                </select>
-                            </div>
+                            {renderSelect("Exercise Angina", "exang", [{ value: 0, label: "No" }, { value: 1, label: "Yes" }])}
+                            {renderInput("ST Depression", "oldpeak", "number", 0, 10, "0.1")}
+                            {renderInput("Slope of ST (0–2)", "slope", "number", 0, 2)}
+                            {renderInput("Number of Vessels", "ca", "number", 0, 3)}
+                            {renderSelect("Thalassemia", "thal", [{ value: 2, label: "Normal (2)" }, { value: 1, label: "Fixed Defect (1)" }, { value: 3, label: "Reversable (3)" }])}
                         </div>
                     </GlassCard>
                 </div>
@@ -258,6 +197,26 @@ export default function PredictPage() {
                     {!loading && result && (
                         <AnimatePresence>
                             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="flex flex-col gap-4">
+                                {/* Overall Health Score */}
+                                <GlassCard className="relative overflow-hidden group bg-grad-black-blue">
+                                    <div className="absolute top-0 right-0 p-4 opacity-10 transition">
+                                        <Activity size={120} className="text-primary" />
+                                    </div>
+                                    <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                                        Overall Health Score
+                                    </h3>
+                                    <div className="flex items-center justify-between gap-4">
+                                        <div className="flex flex-col gap-2 flex-1 min-w-0">
+                                            <p className="text-4xl font-extrabold text-white">
+                                                {Math.round(100 - (parseFloat(result.heart.risk_probability) * 50 + parseFloat(result.diabetes.risk_probability) * 50))}/100
+                                            </p>
+                                            <p className="text-sm text-text-secondary leading-snug">
+                                                Based on aggregated cardiovascular and metabolic risk factors.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </GlassCard>
+
                                 {/* Heart Disease Card */}
                                 <GlassCard className="relative overflow-hidden group">
                                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">

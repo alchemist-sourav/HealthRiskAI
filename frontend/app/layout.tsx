@@ -4,6 +4,7 @@ import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import MobileNav from "@/components/MobileNav";
+import PageTransition from "@/components/PageTransition";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,7 +29,6 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
-
 export default function RootLayout({
   children,
 }: {
@@ -44,12 +44,12 @@ export default function RootLayout({
         <MobileNav />
 
         {/* Desktop layout */}
-        <div className="hidden md:flex h-screen overflow-hidden p-3 gap-3 relative z-10">
+        <div className="hidden md:flex h-screen overflow-hidden p-4 gap-4 relative z-10">
           <Sidebar />
           <div className="flex-1 flex flex-col glass-panel overflow-hidden">
             <Header />
-            <main className="flex-1 overflow-y-auto p-6 md:p-8 relative">
-              {children}
+            <main className="flex-1 overflow-y-auto p-8 relative">
+              <PageTransition>{children}</PageTransition>
             </main>
           </div>
         </div>
@@ -58,7 +58,7 @@ export default function RootLayout({
         <div className="flex md:hidden flex-col min-h-screen relative z-10">
           <Header />
           <main className="flex-1 overflow-y-auto p-4 pb-24">
-            {children}
+            <PageTransition>{children}</PageTransition>
           </main>
         </div>
       </body>

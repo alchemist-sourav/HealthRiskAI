@@ -24,10 +24,6 @@ const links = [
   { name: "About", href: "/about", icon: Info },
 ];
 
-const secondaryLinks = [
-  { name: "Settings", href: "#", icon: Settings },
-];
-
 export default function Sidebar() {
   const pathname = usePathname();
 

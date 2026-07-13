@@ -10,7 +10,8 @@
   --background: #050505;
   --surface: #111111;
   --surface-secondary: #1a1a1a;
-  --card: #141414;
+  --card: #18181B;
+  --card-secondary: #232326;
 
   /* Brand accents */
   --primary: #0a84ff; /* Primary Blue */
@@ -22,7 +23,7 @@
   --danger: #ff3b30; /* Primary Red */
   --danger-hover: #ff6b62;
   --warning: #ffd60a; /* Accent Yellow */
-  --success: #30d158; /* Success Green */
+  --success: #22c55e; /* Success Green */
 
   /* Text */
   --text-primary: #ffffff;
@@ -45,6 +46,11 @@
   --grad-blue: linear-gradient(135deg, #0a84ff 0%, #5ac8fa 100%);
   --grad-yellow: linear-gradient(135deg, #ffd60a 0%, #ffe98a 100%);
   --grad-purple: linear-gradient(135deg, #bf5af2 0%, #7c5cff 100%);
+  
+  /* Deep Glowing Gradients */
+  --grad-black-red: radial-gradient(circle at top right, rgba(255,59,48,0.15), transparent 70%), linear-gradient(180deg, var(--card) 0%, #050505 100%);
+  --grad-black-blue: radial-gradient(circle at top right, rgba(10,132,255,0.15), transparent 70%), linear-gradient(180deg, var(--card) 0%, #050505 100%);
+  --grad-black-yellow: radial-gradient(circle at top right, rgba(255,214,10,0.15), transparent 70%), linear-gradient(180deg, var(--card) 0%, #050505 100%);
 }
 
 @theme inline {
@@ -52,6 +58,7 @@
   --color-surface: var(--surface);
   --color-surface-secondary: var(--surface-secondary);
   --color-card: var(--card);
+  --color-card-secondary: var(--card-secondary);
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-secondary: var(--secondary);
@@ -205,6 +212,16 @@ body {
 }
 .bg-grad-purple {
   background: var(--grad-purple);
+}
+
+.bg-grad-black-red {
+  background: var(--grad-black-red);
+}
+.bg-grad-black-blue {
+  background: var(--grad-black-blue);
+}
+.bg-grad-black-yellow {
+  background: var(--grad-black-yellow);
 }
 
 .glow-red {
