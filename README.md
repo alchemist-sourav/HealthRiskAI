@@ -37,9 +37,9 @@ graph LR
     User([Clinician]) -->|Clinical Data| Frontend[Next.js App Router]
     Frontend -->|JSON Payload| Backend[FastAPI Server]
     Backend -->|Scikit-learn| Models[(ML Models)]
-    Models -->>Backend: Risk Probabilities
-    Backend -->>Frontend: API Response
-    Frontend ->>User: AI Health Report
+    Models -->|Risk Probabilities| Backend
+    Backend -->|API Response| Frontend
+    Frontend -->|AI Health Report| User
 ```
 
 ## 📂 Folder Structure

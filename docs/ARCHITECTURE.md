@@ -6,11 +6,11 @@ HealthRisk AI is built using a modern, decoupled architecture. This ensures that
 
 ```mermaid
 graph LR
-    User([Clinician/User]) -->|HTTPS| Frontend[Next.js 16 Frontend]
-    Frontend -->|REST API (JSON)| Backend[FastAPI Backend]
-    Backend -->|Loads| Models[(ML Models .pkl)]
-    Backend -->|Loads| Data[(Datasets .csv)]
-    Backend -->|JSON Response| Frontend
+    User(["Clinician/User"]) -->|HTTPS| Frontend["Next.js 16 Frontend"]
+    Frontend -->|"REST API (JSON)"| Backend["FastAPI Backend"]
+    Backend -->|Loads| Models[("ML Models .pkl")]
+    Backend -->|Loads| Data[("Datasets .csv")]
+    Backend -->|"JSON Response"| Frontend
 ```
 
 ## Frontend (Next.js 16)
